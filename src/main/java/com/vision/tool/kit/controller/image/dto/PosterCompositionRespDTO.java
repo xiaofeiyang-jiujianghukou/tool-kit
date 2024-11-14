@@ -1,6 +1,6 @@
 package com.vision.tool.kit.controller.image.dto;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 @Builder
@@ -10,9 +10,10 @@ import lombok.*;
 @ToString
 public class PosterCompositionRespDTO {
 
-    @ApiModelProperty(value = "海报URL")
+    @Schema(title = "海报URL")
     private Integer x;
-    @ApiModelProperty(value = "二维码URL")
+    @Schema(title = "二维码URL")
     private Integer y;
+    @Schema(title = "缩放比例")
     private Integer scaleFactor;
 }

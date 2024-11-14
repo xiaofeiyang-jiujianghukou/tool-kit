@@ -1,6 +1,6 @@
 package com.vision.tool.kit.controller.image.dto;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 @Builder
@@ -10,8 +10,8 @@ import lombok.*;
 @ToString
 public class PosterCompositionReqDTO {
 
-    @ApiModelProperty(value = "海报URL")
+    @Schema(title = "海报URL")
     private String posterUrl;
-    @ApiModelProperty(value = "二维码URL")
-    private String qrCodeUrl;
+    @Schema(title = "二维码URL", hidden = true)
+    private String qrCodeUrl = "https://va-pics.oss-accelerate.aliyuncs.com/teach/b312e878-73b3-4f91-b29c-e9576e25fbc4.png";
 }

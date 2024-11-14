@@ -3,58 +3,36 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.3.2</version>
+	</parent>
+
 	<artifactId>tool-kit</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>tool-kit</name>
 	<description>tool-kit</description>
 
-	<parent>
-		<groupId>com.vision</groupId>
-		<artifactId>cool-starter-parent</artifactId>
-		<version>2.0.0.RELEASE</version>
-	</parent>
-
 	<properties>
 		<java.version>17</java.version>
 		<easypoi.version>4.4.0</easypoi.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<hutool.version>5.3.10</hutool.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
-			<groupId>com.vision</groupId>
-			<artifactId>cool-component-starter</artifactId>
-			<version>2.0.0.RELEASE</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-bootstrap</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-loadbalancer</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-openfeign</artifactId>
-			<version>4.0.1</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.jodd</groupId>
 			<artifactId>jodd-core</artifactId>
 			<version>5.0.10</version>
-		</dependency>
-		<dependency>
-			<groupId>cn.vision.pub</groupId>
-			<artifactId>va-pub-job-core</artifactId>
-			<version>1.0.2-SNAPSHOT</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>netty-all</artifactId>
-					<groupId>io.netty</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -77,20 +55,11 @@
 			<artifactId>gson</artifactId>
 			<version>2.9.0</version>
 		</dependency>
-		<!--服务监控-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.micrometer</groupId>
-			<artifactId>micrometer-registry-prometheus</artifactId>
-		</dependency>
 
 		<dependency>
 			<groupId>cn.hutool</groupId>
 			<artifactId>hutool-all</artifactId>
-			<version>${hutool.version}</version>
+			<version>5.3.10</version>
 		</dependency>
 
 		<dependency>
@@ -98,50 +67,36 @@
 			<artifactId>opencv</artifactId>
 			<version>4.9.0-1.5.10</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.7.0</version> <!-- 使用最新稳定版本 -->
+		</dependency>
+
 	</dependencies>
 
 	<build>
-		<finalName>${project.name}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>2.6.6</version>
 				<configuration>
-					<executable>true</executable>
-					<layout>JAR</layout>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-						<configuration>
-							<attach>false</attach>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>17</source>
-					<target>17</target>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-
-	<distributionManagement>
-		<repository>
-			<id>maven-releases</id>
-			<url>http://nexus.visionacademy.cn/repository/maven-releases/</url>
-		</repository>
-		<snapshotRepository>
-			<id>maven-snapshots</id>
-			<url>http://nexus.visionacademy.cn/repository/maven-snapshots/</url>
-		</snapshotRepository>
-	</distributionManagement>
 
 </project>
