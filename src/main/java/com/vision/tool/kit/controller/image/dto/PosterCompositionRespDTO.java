@@ -10,9 +10,9 @@ import lombok.*;
 @ToString
 public class PosterCompositionRespDTO {
 
-    @Schema(title = "海报URL")
+    @Schema(title = "X轴")
     private Integer x;
-    @Schema(title = "二维码URL")
+    @Schema(title = "Y轴")
     private Integer y;
     @Schema(title = "缩放比例")
     private Integer scaleFactor;
