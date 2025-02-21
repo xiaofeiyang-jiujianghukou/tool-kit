@@ -201,8 +201,8 @@ public class EdgeDetectionBlankSpace {
                 // 保存最终的合成结果
                 // Imgcodecs.imwrite("C:\\Users\\Administrator\\Desktop\\output_image_with_qrcode.jpg", matPoster);
 
-                BufferedImage finalImage = matToBufferedImage(matPoster);
-                ImageIO.write(finalImage, "jpg", new File("D:\\Desktop\\output_image_with_qrcode.jpg"));
+                /*BufferedImage finalImage = matToBufferedImage(matPoster);
+                ImageIO.write(finalImage, "jpg", new File("D:\\Desktop\\output_image_with_qrcode.jpg"));*/
 
                 log.info("二维码 x：{} y：{} scaleFactor：{}", x, y, scaleFactor);
 
