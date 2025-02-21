@@ -206,7 +206,7 @@ public class EdgeDetectionBlankSpace {
 
                 log.info("二维码 x：{} y：{} scaleFactor：{}", x, y, scaleFactor);
 
-                System.out.println("二维码已成功合成到海报图中，并保存为 output_image_with_qrcode.jpg");
+                //System.out.println("二维码已成功合成到海报图中，并保存为 output_image_with_qrcode.jpg");
 
                 respDTO.setX(x);
                 respDTO.setY(y);
