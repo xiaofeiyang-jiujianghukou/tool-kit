@@ -9,3 +9,5 @@ logging:
     org:
       springframework:
         web: DEBUG
+server:
+  port: 7077
