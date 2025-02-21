@@ -7,8 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.SystemUtils;
 import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -28,7 +26,7 @@ import java.util.List;
 public class EdgeDetectionBlankSpace {
     static {
         // System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-        if (!SystemUtils.IS_OS_WINDOWS) {
+        if (SystemUtils.IS_OS_WINDOWS) {
             File opencvLibrary = extractLibrary("opencv/windows/opencv_java490.dll"); // 修改为实际路径
             if (opencvLibrary != null && opencvLibrary.exists()) {
                 System.load(opencvLibrary.getAbsolutePath());
@@ -36,7 +34,7 @@ public class EdgeDetectionBlankSpace {
             } else {
                 log.error("Failed to load OpenCV library.");
             }
-        } else if (!SystemUtils.IS_OS_LINUX) {
+        } else if (SystemUtils.IS_OS_LINUX) {
             try {
                 File opencvLibrary = extractLibrary("opencv/linux/libopencv_java490.so"); // 修改为实际路径
                 if (opencvLibrary != null && opencvLibrary.exists()) {
@@ -71,33 +69,6 @@ public class EdgeDetectionBlankSpace {
             return tempPath.toFile();
         } catch (IOException e) {
             log.info("extractLibrary error ", e);
-            return null;
-        }
-    }
-
-    private static File extractSOLibrary(String libraryName) {
-        // 获取文件的输入流
-        InputStream in = ToolKitApplication.class.getClassLoader().getResourceAsStream(libraryName);
-        if (in == null) {
-            System.err.println("Library not found in resources!");
-            return null;
-        }
-
-        log.info("extractSOLibrary {} will load", libraryName);
-
-        String[] split = libraryName.split("/");
-
-        String fileName = split[1];
-        log.info("extractSOLibrary {} will load fileName {}", libraryName, fileName);
-        // 创建临时文件
-        try {
-            Path tempPath = Files.createTempFile(fileName, ".so");
-            Files.copy(in, tempPath, StandardCopyOption.REPLACE_EXISTING);
-            log.info("extractSOLibrary {} will load", tempPath);
-            tempPath.toFile().deleteOnExit(); // 确保程序退出时删除临时文件
-            return tempPath.toFile();
-        } catch (IOException e) {
-            log.info("extractSOLibrary error ", e);
             return null;
         }
     }
