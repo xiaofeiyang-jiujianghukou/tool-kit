@@ -62,11 +62,28 @@
 			<version>5.3.10</version>
 		</dependency>
 
+		<!-- 核心库 -->
 		<dependency>
 			<groupId>org.bytedeco</groupId>
 			<artifactId>opencv</artifactId>
 			<version>4.9.0-1.5.10</version>
 		</dependency>
+		<!--&lt;!&ndash; 补充平台绑定（以Windows为例） &ndash;&gt;
+		<dependency>
+			<groupId>org.bytedeco</groupId>
+			<artifactId>opencv-platform</artifactId>
+			<version>4.9.0-1.5.10</version>
+		</dependency>
+		<dependency>
+			<groupId>org.bytedeco</groupId>
+			<artifactId>openblas</artifactId>
+			<version>0.3.26-1.5.10</version> &lt;!&ndash; 与OpenCV版本保持兼容 &ndash;&gt;
+		</dependency>
+		<dependency>
+			<groupId>org.bytedeco</groupId>
+			<artifactId>openblas-platform</artifactId>
+			<version>0.3.26-1.5.10</version> &lt;!&ndash; 自动匹配系统平台 &ndash;&gt;
+		</dependency>-->
 
 		<dependency>
 			<groupId>org.springdoc</groupId>

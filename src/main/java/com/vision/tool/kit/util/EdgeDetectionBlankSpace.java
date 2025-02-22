@@ -1,10 +1,8 @@
 package com.vision.tool.kit.util;
 
-import com.vision.tool.kit.ToolKitApplication;
 import com.vision.tool.kit.controller.image.dto.PosterCompositionReqDTO;
 import com.vision.tool.kit.controller.image.dto.PosterCompositionRespDTO;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.SystemUtils;
 import org.opencv.core.*;
 import org.opencv.imgproc.Imgproc;
 
@@ -12,65 +10,16 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
 public class EdgeDetectionBlankSpace {
     static {
-        // System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-        if (SystemUtils.IS_OS_WINDOWS) {
-            File opencvLibrary = extractLibrary("opencv/windows/opencv_java490.dll"); // 修改为实际路径
-            if (opencvLibrary != null && opencvLibrary.exists()) {
-                System.load(opencvLibrary.getAbsolutePath());
-                log.info("OpenCV library loaded successfully!");
-            } else {
-                log.error("Failed to load OpenCV library.");
-            }
-        } else if (SystemUtils.IS_OS_LINUX) {
-            try {
-                File opencvLibrary = extractLibrary("opencv/linux/libopencv_java490.so"); // 修改为实际路径
-                if (opencvLibrary != null && opencvLibrary.exists()) {
-                    System.load(opencvLibrary.getAbsolutePath());
-                    log.info("OpenCV library loaded successfully!");
-                } else {
-                    log.error("Failed to load OpenCV library.");
-                }
-            } catch (Exception e) {
-                log.error("Failed to load OpenCV library. error {} ", e.getMessage(), e);
-            }
-        }
-    }
-
-
-    private static File extractLibrary(String libraryName) {
-        // 获取文件的输入流
-        InputStream in = ToolKitApplication.class.getClassLoader().getResourceAsStream(libraryName);
-        if (in == null) {
-            System.err.println("Library not found in resources!");
-            return null;
-        }
-
-        // 创建临时文件
-        try {
-            String[] split = libraryName.split("/");
-            String fileName = split[split.length - 1];
-            Path tempPath = Files.createTempFile("", fileName);
-            Files.copy(in, tempPath, StandardCopyOption.REPLACE_EXISTING);
-            log.info("extractLibrary {} will load", tempPath);
-            tempPath.toFile().deleteOnExit(); // 确保程序退出时删除临时文件
-            return tempPath.toFile();
-        } catch (IOException e) {
-            log.info("extractLibrary error ", e);
-            return null;
-        }
+        OpenCVLoader.loadOpenCVLibrary();
     }
 
     // 将 BufferedImage 转换为 Mat，并保持 RGB 颜色
