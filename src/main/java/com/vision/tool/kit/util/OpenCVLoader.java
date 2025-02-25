@@ -74,6 +74,10 @@ public class OpenCVLoader {
                 // 如果是 nested:/，则去掉该前缀并正确获取资源文件
                 jarFilePath = jarFilePath.substring(8); // 去掉 "nested:/" 部分
             }
+            if (jarFilePath.startsWith("file:/")) {
+                // 如果是 file:/，则去掉该前缀并正确获取资源文件
+                jarFilePath = jarFilePath.substring(6); // 去掉 "file:/" 部分
+            }
             log.info("Extracting jar 2 url Path: " + jarFilePath);
             jarFilePath = jarFilePath.substring(0, jarFilePath.indexOf("!")); // 获取 JAR 文件路径
             log.info("Extracting jar 3 url Path: " + jarFilePath);
@@ -153,7 +157,8 @@ public class OpenCVLoader {
                     // 加载 .so 文件
                     System.load(file.getAbsolutePath());
                     log.info("Loaded: {} success", file.getName());
-                } catch (UnsatisfiedLinkError e) {
+                } catch (Exception e) {
+                    log.error("Failed to load " + file.getName(), e);
                     failedFiles.add(file);
                 }
             }
