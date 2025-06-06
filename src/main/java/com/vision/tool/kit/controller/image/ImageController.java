@@ -1,8 +1,7 @@
 package com.vision.tool.kit.controller.image;
 
 import com.vision.tool.kit.common.Result;
-import com.vision.tool.kit.controller.image.dto.PosterCompositionReqDTO;
-import com.vision.tool.kit.controller.image.dto.PosterCompositionRespDTO;
+import com.vision.tool.kit.controller.image.dto.*;
 import com.vision.tool.kit.manager.ImagerManager;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -21,10 +20,22 @@ public class ImageController {
     @Resource
     private ImagerManager imagerManager;
 
-    @PostMapping("/image/posterComposition")
-    @Operation(summary = "获取用户信息", description = "通过用户ID获取用户的详细信息")
-    public Result<PosterCompositionRespDTO> posterComposition(@Validated @RequestBody PosterCompositionReqDTO input) {
-        return Result.success(imagerManager.posterComposition(input));
+    @PostMapping("/image/posterCalculate")
+    @Operation(summary = "海报计算", description = "通过用户ID获取用户的详细信息")
+    public Result<PosterCalculateRespDTO> posterCalculate(@Validated @RequestBody PosterCalculateReqDTO input) {
+        return Result.success(imagerManager.posterCalculate(input));
+    }
+
+    @PostMapping("/image/posterCompress")
+    @Operation(summary = "海报压缩", description = "通过用户ID获取用户的详细信息")
+    public Result<PosterCompressRespDTO> posterCompress(@Validated @RequestBody PosterCompressReqDTO input){
+        return Result.success(imagerManager.posterCompress(input));
+    }
+
+    @PostMapping("/image/posterCompose")
+    @Operation(summary = "海报合成", description = "通过用户ID获取用户的详细信息")
+    public Result<PosterComposeRespDTO> posterCompose(@Validated @RequestBody PosterComposeReqDTO input){
+        return Result.success(imagerManager.posterCompose(input));
     }
 
 
