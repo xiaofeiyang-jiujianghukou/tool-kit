@@ -11,11 +11,3 @@ logging:
         web: INFO
 server:
   port: 8081
-
-#aliyun-oss:
-#  accessKeyId: LTAI5tMRvjzYUWhMdQoVR3oc
-#  accessKeySecret: xB2qDYaLl5GzfPUnjDT5Tp4vXGYOek
-#  externalEndpoint: http://oss-cn-hangzhou.aliyuncs.com
-#  ossServerHost: https://va-download.oss-cn-hangzhou.aliyuncs.com
-#  bucketName: va-download
-#  internalEndpoint: http://oss-cn-hangzhou-internal.aliyuncs.com
