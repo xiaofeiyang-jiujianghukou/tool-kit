@@ -5,6 +5,8 @@ public class TestAI {
         int a = 10;
         int b = 0;
         int c = a/ b;
+        Integer d = null;
+        int e = a / d;
         System.out.println(c);
     }
 }
