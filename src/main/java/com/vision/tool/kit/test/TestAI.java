@@ -7,6 +7,7 @@ public class TestAI {
         int c = a/ b;
         Integer d = null;
         int e = a / d;
+        System.out.println( 10 / d);
         System.out.println(c);
     }
 }
